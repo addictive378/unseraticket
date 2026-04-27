@@ -501,9 +501,9 @@ export default function CheckoutPage() {
                                         <div className={styles.lineItem}>
                                             <span className={styles.itemLabel}>
                                                 <div className={styles.dot} style={{ background: 'var(--accent)' }}></div>
-                                                Platform Fee
+                                                Gratis
                                             </span>
-                                            <span className={styles.itemValue} style={{ color: '#22c55e' }}>FREE</span>
+                                            <span className={styles.itemValue} style={{ color: '#22c55e' }}>EXTRAJOSS</span>
                                         </div>
                                     </div>
 
