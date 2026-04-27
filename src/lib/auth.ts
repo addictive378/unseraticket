@@ -63,5 +63,6 @@ export const authOptions: AuthOptions = {
     pages: {
         signIn: '/login',
     },
+    useSecureCookies: false, // Force false to support HTTP (IP-based) deployment
     secret: process.env.NEXTAUTH_SECRET,
 };
