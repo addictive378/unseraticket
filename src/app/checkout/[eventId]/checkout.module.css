@@ -1,0 +1,691 @@
+.page {
+    padding-top: 120px;
+    padding-bottom: 80px;
+    min-height: 100vh;
+    background: var(--background);
+    color: white;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.ambientBg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.glowTop {
+    position: absolute;
+    top: -10%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: rgba(250, 222, 91, 0.15);
+    border-radius: 50%;
+    filter: blur(150px);
+}
+
+.glowBottom {
+    position: absolute;
+    bottom: -10%;
+    left: -10%;
+    width: 600px;
+    height: 600px;
+    background: rgba(138, 181, 201, 0.1);
+    border-radius: 50%;
+    filter: blur(150px);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.backLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 2rem;
+    transition: color 0.2s ease;
+}
+
+.backLink:hover {
+    color: white;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+    gap: 2rem;
+}
+
+.title h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 500;
+}
+
+.steps {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.step {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.stepActive {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.stepIcon {
+    width: 16px;
+    height: 16px;
+}
+
+.stepText {
+    font-size: 0.7rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.stepDivider {
+    width: 1rem;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.mainGrid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.contentArea {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.sectionHeader {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.sectionNumber {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.numberPurple {
+    background: rgba(250, 222, 91, 0.2);
+    color: var(--primary);
+    border-color: rgba(250, 222, 91, 0.3);
+}
+
+.numberPink {
+    background: rgba(243, 137, 148, 0.2);
+    color: var(--accent);
+    border-color: rgba(243, 137, 148, 0.3);
+}
+
+.sectionHeader h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.tierGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.tierCard {
+    position: relative;
+    cursor: pointer;
+    padding: 1.5rem;
+    border-radius: 2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 2px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tierCard:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.tierCardSelected {
+    border-color: var(--primary);
+    background: rgba(250, 222, 91, 0.05);
+    box-shadow: 0 0 0 4px rgba(250, 222, 91, 0.1);
+}
+
+.tierHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.tierInfo h4 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.premiumBadge {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    color: black;
+    font-size: 0.6rem;
+    font-weight: 900;
+    padding: 0.15rem 0.5rem;
+    border-radius: 99px;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin-left: 0.5rem;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.stockInfo {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.stockIcon {
+    color: var(--primary);
+}
+
+.tierPrice {
+    text-align: right;
+}
+
+.priceAmount {
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.priceLabel {
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.tierDescription {
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.checkMark {
+    position: absolute;
+    bottom: -0.5rem;
+    right: -0.5rem;
+    background: var(--primary);
+    color: var(--background);
+    padding: 0.4rem;
+    border-radius: 1rem;
+    display: flex;
+}
+
+.quantityCard {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quantityLabel p:first-child {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.quantityLabel p:last-child {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.quantityControls {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 0.5rem;
+    border-radius: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.qBtn {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 1.25rem;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.2s ease;
+}
+
+.qBtn:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+}
+
+.qBtn:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+}
+
+.qValue {
+    font-size: 2.5rem;
+    font-weight: 900;
+    width: 2.5rem;
+    text-align: center;
+}
+
+.formBox {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.formRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.inputGroup label {
+    font-size: 0.6rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.3);
+    margin-left: 0.5rem;
+}
+
+.inputWrapper {
+    position: relative;
+}
+
+.inputIcon {
+    position: absolute;
+    left: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.2);
+    transition: color 0.3s ease;
+}
+
+.inputField {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.5rem;
+    padding: 1.25rem 1rem 1.25rem 3.5rem;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.inputField:focus {
+    border-color: var(--primary);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.inputWrapper:focus-within .inputIcon {
+    color: var(--primary);
+}
+
+.inputHint {
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.2);
+    font-style: italic;
+    margin-left: 0.5rem;
+}
+
+.sidebar {
+    position: sticky;
+    top: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.summaryCard {
+    background: linear-gradient(135deg, rgba(20, 20, 20, 0.8), rgba(10, 10, 10, 0.9));
+    backdrop-filter: blur(40px);
+    border-radius: 3rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+    padding: 2rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.eventBanner {
+    position: relative;
+    height: 10rem;
+    margin: -2rem -2rem 2rem -2rem;
+    overflow: hidden;
+}
+
+.bannerImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) opacity(0.4);
+}
+
+.bannerOverlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, #0a0a0a, rgba(10, 10, 10, 0.4), transparent);
+}
+
+.bannerContent {
+    position: absolute;
+    bottom: 1rem;
+    left: 2rem;
+}
+
+.dateInfo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.6rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 0.25rem;
+}
+
+.dateIcon {
+    color: var(--primary);
+}
+
+.eventName {
+    font-size: 1.25rem;
+    font-weight: 900;
+}
+
+.summaryTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.lineItems {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.lineItem {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+}
+
+.itemLabel {
+    color: rgba(255, 255, 255, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dot {
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 50%;
+}
+
+.itemValue {
+    font-weight: 700;
+}
+
+.totalSection {
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.totalLabel {
+    font-size: 0.6rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.3);
+    margin-bottom: 0.25rem;
+}
+
+.totalValue {
+    font-size: 2.25rem;
+    font-weight: 900;
+}
+
+.payButton {
+    width: 100%;
+    height: 5rem;
+    background: white;
+    color: black;
+    border-radius: 2rem;
+    font-weight: 900;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    transition: all 0.3s ease;
+}
+
+.payButton:hover:not(:disabled) {
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(255, 255, 255, 0.05);
+}
+
+.payButton:disabled {
+    opacity: 0.5;
+    filter: grayscale(1);
+    cursor: not-allowed;
+}
+
+.errorToast {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: 1.25rem;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+    font-size: 0.6rem;
+    font-weight: 900;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.trustBadges {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    opacity: 0.3;
+    filter: grayscale(1);
+    transition: all 0.7s ease;
+}
+
+.trustBadges:hover {
+    opacity: 1;
+    filter: grayscale(0);
+}
+
+.dividerSmall {
+    width: 1px;
+    height: 1rem;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.badgeIcons {
+    display: flex;
+    gap: 1rem;
+}
+
+.miniBadge {
+    width: 2rem;
+    height: 1.25rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0.25rem;
+}
+
+.securityFooter {
+    padding: 1rem 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.secIconBox {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: rgba(34, 197, 94, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #22c55e;
+}
+
+.secText {
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* Utils */
+.loadingSpinner {
+    width: 2rem;
+    height: 2rem;
+    border: 3px solid rgba(139, 92, 246, 0.1);
+    border-left-color: #8b5cf6;
+    border-radius: 50%;
+    animation: spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 1024px) {
+    .mainGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        position: static;
+    }
+
+    .title h1 {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+    }
+
+    .formRow {
+        grid-template-columns: 1fr;
+    }
+
+    .title h1 {
+        font-size: 2.5rem;
+    }
+
+    .quantityCard {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: flex-start;
+    }
+
+    .quantityControls {
+        width: 100%;
+        justify-content: space-between;
+    }
+}

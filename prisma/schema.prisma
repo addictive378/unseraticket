@@ -1,0 +1,199 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  //url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+
+model User {
+  id             String           @id @default(cuid())
+  email          String           @unique
+  password       String
+  name                   String?
+  role                   Role                      @default(USER)
+  createdAt              DateTime                  @default(now())
+  updatedAt              DateTime                  @updatedAt
+  bazars                 Bazar[]
+  purchases              TicketPurchase[]
+  issuedTickets          IssuedTicket[]
+  competitionRegistrations CompetitionRegistration[]
+}
+
+model Event {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  date        DateTime
+  location    String
+  image       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  tickets     Ticket[]
+  bazars        Bazar[]
+  bazarRegStart DateTime?
+  bazarRegEnd   DateTime?
+  bazarDate     DateTime?
+  bazarFee      Float     @default(800000)
+  bazarCP       String?
+  bazarVenue    String?
+  bazarRegEnabled Boolean @default(true)
+}
+
+model Ticket {
+  id          String           @id @default(cuid())
+  eventId     String
+  event       Event            @relation(fields: [eventId], references: [id])
+  type        String // VIP, Regular, etc.
+  price       Float
+  stock       Int
+  description String?
+  status      String           @default("ACTIVE") // ACTIVE, CLOSED
+  purchases   TicketPurchase[]
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+}
+
+model Bazar {
+  id              String         @id @default(cuid())
+  eventId         String
+  event           Event          @relation(fields: [eventId], references: [id])
+  userId          String
+  user            User           @relation(fields: [userId], references: [id])
+  name            String
+  type            String // Food, Fashion, etc.
+  description     String
+  status          PurchaseStatus @default(PENDING_PAYMENT)
+  totalAmount     Float          @default(800000)
+  paymentProof    String?
+  proofUploadedAt DateTime?
+  confirmedAt     DateTime?
+  rejectedReason  String?
+  isCheckedIn     Boolean        @default(false)
+  checkedInAt     DateTime?
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+}
+
+enum PurchaseStatus {
+  PENDING_PAYMENT
+  PENDING_VALIDATION
+  CONFIRMED
+  REJECTED
+  CANCELLED
+}
+
+model TicketPurchase {
+  id              String         @id @default(cuid())
+  userId          String
+  user            User           @relation(fields: [userId], references: [id])
+  ticketId        String
+  ticket          Ticket         @relation(fields: [ticketId], references: [id])
+  quantity        Int
+  totalPurchase   Float
+  buyerName       String         @default("")
+  status          PurchaseStatus @default(PENDING_PAYMENT)
+  paymentProof    String?
+  proofUploadedAt DateTime?
+  confirmedAt     DateTime?
+  rejectedReason  String?
+  createdAt       DateTime       @default(now())
+  issuedTickets   IssuedTicket[]
+}
+
+model IssuedTicket {
+  id         String         @id @default(cuid())
+  purchaseId String
+  purchase   TicketPurchase @relation(fields: [purchaseId], references: [id])
+  userId     String
+  user       User           @relation(fields: [userId], references: [id])
+  holderName String
+  isUsed     Boolean        @default(false)
+  usedAt     DateTime?
+  createdAt  DateTime       @default(now())
+}
+
+enum CompetitionStatus {
+  UPCOMING
+  ONGOING
+  COMPLETED
+  CANCELLED
+}
+
+model Competition {
+  id                   String                    @id @default(cuid())
+  name                 String
+  description          String
+  date                 DateTime
+  regStart             DateTime?
+  regEnd               DateTime?
+  tmStart              DateTime?
+  perfStart            DateTime?
+  perfEnd              DateTime?
+  location             String
+  venue                String?
+  image                String?
+  moreInfoImage        String?
+  contactPerson        String?
+  category             String // Music, Tech, Art, Sports, etc.
+  registrationFee      Float                     @default(0)
+  status               CompetitionStatus         @default(UPCOMING)
+  registrations        CompetitionRegistration[]
+  createdAt            DateTime                  @default(now())
+  updatedAt            DateTime                  @updatedAt
+}
+
+model CompetitionRegistration {
+  id              String         @id @default(cuid())
+  competitionId   String
+  competition     Competition    @relation(fields: [competitionId], references: [id])
+  userId          String
+  user            User           @relation(fields: [userId], references: [id])
+  buyerName       String
+  whatsapp        String?
+  status          PurchaseStatus @default(PENDING_PAYMENT)
+  paymentProof    String?
+  proofUploadedAt DateTime?
+  confirmedAt     DateTime?
+  rejectedReason  String?
+  isCheckedIn     Boolean        @default(false)
+  checkedInAt     DateTime?
+  createdAt       DateTime       @default(now())
+}
+
+model SiteSettings {
+  id              String   @id @default("vibrant-pulse-settings")
+  siteName        String   @default("VIBRANT PULSE")
+  logoText        String   @default("VIBRANT")
+  logoSuffix      String   @default("PULSE")
+  
+  // Hero Section
+  heroBadge       String   @default("15-20 MARET, 2025 • ARENA PUSAT KOTA")
+  heroTitle       String   @default("RASAKAN DENYUT MASA DEPAN")
+  heroSubtitle    String   @default("Bergabunglah dengan 50.000 visioner teknologi, seniman, dan pelopor suara untuk enam hari pengalaman imersif dan koneksi bertegangan tinggi.")
+  heroImage       String?
+  galleryImages   String[] @default([])
+  
+  // About Section
+  aboutBadge      String   @default("FunTastik")
+  aboutTitle      String   @default("Mendefinisikan Ulang Pengalaman Langsung")
+  aboutText1      String   @default("Vibrant Pulse born from a simple mission: to bridge the gap between human connection and technological advancement. We believe that live events are the final frontier of authentic experiences.")
+  aboutText2      String   @default("Since 2018, we have curated environments where boundaries fade—between artist and audience, digital and physical, expectation and reality. Our team of world-class engineers and creative directors build worlds, not just stages.")
+  
+  // Footer
+  footerCopyright String   @default("© 2025 VIBRANT PULSE EVENTS. HAK CIPTA DILINDUNGI UNDANG-UNDANG.")
+  
+  // Social/Contact
+  whatsapp        String?
+  instagram       String?
+  email           String?
+  
+  updatedAt       DateTime @updatedAt
+}

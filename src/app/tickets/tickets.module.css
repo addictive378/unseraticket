@@ -1,0 +1,277 @@
+.page {
+    padding-top: 100px;
+    min-height: 100vh;
+    background-color: #0c0c0c;
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(255, 165, 0, 0.03) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(255, 0, 100, 0.03) 0%, transparent 40%);
+}
+
+.header {
+    padding: 6rem 0 4rem;
+    text-align: center;
+}
+
+.titleWrapper {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.getLabel {
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 4px;
+    color: white;
+    opacity: 0.9;
+}
+
+.highlightBox {
+    background: #ff9d00;
+    padding: 0.6rem 2rem;
+    color: black;
+    font-size: 3.5rem;
+    font-weight: 950;
+    transform: rotate(-1.5deg);
+    display: inline-block;
+    box-shadow: 0 0 40px rgba(255, 157, 0, 0.3);
+    margin: 0.8rem 0;
+    text-transform: uppercase;
+}
+
+.nowLabel {
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 4px;
+    color: white;
+    opacity: 0.9;
+}
+
+.gridSection {
+    padding-bottom: 8rem;
+}
+
+.ticketGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2.5rem;
+    padding-top: 2rem;
+}
+
+.ticketCard {
+    position: relative;
+    background: #1a1a1a;
+    width: 100%;
+    min-height: 480px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ticketCard:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Background Pattern */
+.patternBg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.05;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 10h20v20H10z' fill='none' stroke='white' stroke-width='1'/%3E%3Ccircle cx='20' cy='20' r='2' fill='white'/%3E%3C/svg%3E");
+    background-size: 80px 80px;
+}
+
+/* Scalloped top and bottom */
+.ticketCard::before,
+.ticketCard::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 12px;
+    z-index: 5;
+    background-size: 24px 24px;
+}
+
+.ticketCard::before {
+    top: -6px;
+    background-image: radial-gradient(circle at 12px 0px, #0c0c0c 10px, transparent 11px);
+}
+
+.ticketCard::after {
+    bottom: -6px;
+    background-image: radial-gradient(circle at 12px 24px, #0c0c0c 10px, transparent 11px);
+}
+
+.cardTop {
+    padding: 2.5rem 2rem;
+    position: relative;
+    border-bottom: 2px dashed rgba(255, 255, 255, 0.1);
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.badgeRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.typeBadge {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.statusBadge {
+    background: #ef4444;
+    color: white;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.6rem;
+    font-weight: 900;
+    border-radius: 4px;
+    text-transform: uppercase;
+}
+
+.eventName {
+    font-size: 2rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    color: white;
+    text-transform: uppercase;
+}
+
+.priceWrapper {
+    margin-top: auto;
+}
+
+.startsFromLabel {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.priceAmount {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: white;
+}
+
+.cardStub {
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    position: relative;
+}
+
+.sideHole {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    background: #0c0c0c;
+    border-radius: 50%;
+    top: -12px;
+    z-index: 10;
+}
+
+.leftHole {
+    left: -12px;
+}
+
+.rightHole {
+    right: -12px;
+}
+
+.buyBtn {
+    width: 100%;
+    padding: 1.1rem;
+    background: #ff9d00;
+    color: black;
+    font-weight: 950;
+    text-transform: uppercase;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(255, 157, 0, 0.2);
+}
+
+.buyBtn:hover {
+    background: #ffb700;
+    box-shadow: 0 0 30px rgba(255, 157, 0, 0.4);
+    transform: scale(1.02);
+}
+
+.seeAllBtn {
+    padding: 0.8rem 2.5rem;
+    background: transparent;
+    border: 2px solid #ff9d00;
+    color: #ff9d00;
+    font-weight: 800;
+    border-radius: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 4rem 1rem 2rem;
+    }
+
+    .highlightBox {
+        font-size: 2.2rem;
+        padding: 0.5rem 1.5rem;
+    }
+
+    .ticketGrid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+        gap: 2rem;
+    }
+
+    .ticketCard {
+        min-height: auto;
+    }
+
+    .eventName {
+        font-size: 1.6rem;
+    }
+
+    .priceAmount {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .highlightBox {
+        font-size: 1.8rem;
+    }
+
+    .getLabel,
+    .nowLabel {
+        font-size: 0.9rem;
+        letter-spacing: 2px;
+    }
+}
