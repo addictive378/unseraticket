@@ -10,10 +10,10 @@ export const metadata: Metadata = {
   keywords: ["e-ticket", "events", "concerts", "festivals", "ticketing platform", "Vibrant Pulse"],
   authors: [{ name: "Adi Saputra" }],
   openGraph: {
-    title: "Vibrant Pulse | E-Ticket Platform",
+    title: "Unsera Akustik | E-Ticket Platform",
     description: "The future of live events. Experience the pulse of tomorrow.",
     url: "https://vibrantpulse.com",
-    siteName: "Vibrant Pulse",
+    siteName: "Unsera Akustik",
     images: [
       {
         url: "/og-image.jpg", // Make sure this exists or suggest creating it
