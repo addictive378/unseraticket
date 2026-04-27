@@ -5,7 +5,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXTAUTH_URL || 'http://localhost:3000'),
-  title: "Vibrant Pulse | E-Ticket Platform",
+  title: "Unsera Akustik | E-Ticket Platform",
   description: "The future of live events. Experience the pulse of tomorrow with premium ticketing and event management.",
   keywords: ["e-ticket", "events", "concerts", "festivals", "ticketing platform", "Vibrant Pulse"],
   authors: [{ name: "Adi Saputra" }],
