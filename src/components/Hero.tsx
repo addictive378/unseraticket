@@ -38,13 +38,19 @@ export default function Hero({ badge, title, subtitle, image }: HeroProps) {
         <section className={styles.hero}>
             {image && (
                 <div className={styles.heroBg}>
-                    <Image
+                    <img
                         src={image}
                         alt="Hero Background"
-                        fill
-                        priority
-                        className="object-cover"
-                        style={{ filter: 'brightness(0.5)' }}
+                        className={styles.bgImage}
+                        style={{
+                            objectFit: 'cover',
+                            width: '100%',
+                            height: '100%',
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            filter: 'brightness(0.5)'
+                        }}
                     />
                 </div>
             )}

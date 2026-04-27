@@ -67,12 +67,15 @@ export default async function Home() {
               <div className={styles.mainGalleryGrid}>
                 {settings.galleryImages.map((url: string, index: number) => (
                   <div key={index} className={`${styles.galleryItem} glass animate-fadeIn`} style={{ animationDelay: `${index * 0.1}s` }}>
-                    <Image
+                    <img
                       src={url}
                       alt={`Gallery Item ${index}`}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      style={{
+                        objectFit: 'cover',
+                        width: '100%',
+                        height: '100%',
+                        borderRadius: 'inherit'
+                      }}
                     />
                   </div>
                 ))}
