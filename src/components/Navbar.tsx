@@ -70,7 +70,7 @@ export default function Navbar() {
                                 <div className={styles.profileArea}>
                                     <span className={styles.userName}>Hai, {session.user?.name?.split(' ')[0] || 'User'}</span>
                                     <button
-                                        onClick={() => signOut()}
+                                        onClick={() => signOut({ callbackUrl: '/' })}
                                         className={styles.logoutBtn}
                                     >
                                         Keluar
@@ -112,7 +112,7 @@ export default function Navbar() {
                                         Hai, {session.user?.name}
                                     </div>
                                     <button
-                                        onClick={() => signOut()}
+                                        onClick={() => signOut({ callbackUrl: '/' })}
                                         className={styles.logoutBtn}
                                         style={{ width: '100%', marginTop: '0.5rem' }}
                                     >
