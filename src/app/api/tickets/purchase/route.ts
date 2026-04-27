@@ -1,14 +1,11 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/lib/auth';
+import { getUserSession, unauthorizedResponse } from '@/lib/server-auth';
 
 export async function POST(request: Request) {
     try {
-        const session = await getServerSession(authOptions);
-        if (!session?.user?.id) {
-            return NextResponse.json({ message: 'Please login first' }, { status: 401 });
-        }
+        const session = await getUserSession();
+        if (!session) return unauthorizedResponse();
 
         const body = await request.json();
         const { ticketId, quantity, buyerName } = body;

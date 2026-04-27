@@ -80,9 +80,9 @@ export default function SignupPage() {
                         />
                     </div>
 
-                    <p className={styles.terms}>
+                    {/* <p className={styles.terms}>
                         By signing up, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
-                    </p>
+                    </p> */}
 
                     <button type="submit" className="btn-primary" disabled={loading}>
                         {loading ? <Loader2 className="animate-spin" /> : <>GET STARTED <ArrowRight size={18} /></>}

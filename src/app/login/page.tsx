@@ -66,7 +66,7 @@ function LoginContent() {
                     <label><Mail size={16} /> Email Address</label>
                     <input
                         type="email"
-                        placeholder="name@company.com"
+                        placeholder="name@gmail.com"
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -87,7 +87,7 @@ function LoginContent() {
                     <label className={styles.remember}>
                         <input type="checkbox" /> Remember me
                     </label>
-                    <a href="#" className={styles.forgot}>Forgot password?</a>
+                    {/* <a href="#" className={styles.forgot}>Forgot password?</a> */}
                 </div>
 
                 <button type="submit" className="btn-primary" disabled={loading}>

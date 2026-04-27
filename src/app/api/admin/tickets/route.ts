@@ -1,14 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { getAdminSession, unauthorizedResponse } from "@/lib/server-auth";
 
 // GET /api/admin/tickets?eventId=...
 export async function GET(req: NextRequest) {
-    const session = await getServerSession(authOptions);
-    if (!session || session.user.role !== "ADMIN") {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const session = await getAdminSession();
+    if (!session) return unauthorizedResponse();
 
     const { searchParams } = new URL(req.url);
     const eventId = searchParams.get("eventId");
@@ -31,10 +28,8 @@ export async function GET(req: NextRequest) {
 
 // POST /api/admin/tickets
 export async function POST(req: NextRequest) {
-    const session = await getServerSession(authOptions);
-    if (!session || session.user.role !== "ADMIN") {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const session = await getAdminSession();
+    if (!session) return unauthorizedResponse();
 
     try {
         const body = await req.json();
@@ -63,10 +58,8 @@ export async function POST(req: NextRequest) {
 
 // DELETE /api/admin/tickets?id=...
 export async function DELETE(req: NextRequest) {
-    const session = await getServerSession(authOptions);
-    if (!session || session.user.role !== "ADMIN") {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const session = await getAdminSession();
+    if (!session) return unauthorizedResponse();
 
     const { searchParams } = new URL(req.url);
     const id = searchParams.get("id");
@@ -106,10 +99,8 @@ export async function DELETE(req: NextRequest) {
 
 // PUT /api/admin/tickets
 export async function PUT(req: NextRequest) {
-    const session = await getServerSession(authOptions);
-    if (!session || session.user.role !== "ADMIN") {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
+    const session = await getAdminSession();
+    if (!session) return unauthorizedResponse();
 
     try {
         const body = await req.json();
